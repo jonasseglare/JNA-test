@@ -1,7 +1,11 @@
 (ns jna-test.core
   (:require [net.n01se.clojure-jna :as jna]))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(defn load-library []
+  (System/loadLibrary "test"))
+
+(defn invoke-it [n] 
+  (jna/invoke Double test/nthFib n))
+
+(println "Property"
+         (System/getProperty "jna.library.path"))

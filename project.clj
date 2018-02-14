@@ -4,6 +4,7 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :jvm-opts [~(str "-Djava.library.path=native/:"
-                   (System/getenv "LD_LIBRARY_PATH"))]
+                   (System/getenv "LD_LIBRARY_PATH")
+                   "-Djna.library.path=native/")]
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [net.n01se/clojure-jna "1.0.0"]])

@@ -1,4 +1,4 @@
-native/testlib.so: testlib.cpp
-	g++ testlib.cpp -fPIC -shared -o native/testlib.so
+resources/libtest.so: testlib.cpp
+	g++ testlib.cpp -fPIC -shared -o resources/libtest.so
 
-all: native/testlib.so
+all: resources/libtest.so
