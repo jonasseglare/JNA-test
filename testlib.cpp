@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdint.h>
 
 extern "C" {
 
@@ -13,4 +14,18 @@ extern "C" {
     return b;
   }
 
+  struct ValuePair {
+    int32_t x = 119;
+    float y = 14.0;
+  };
+
+  int outputValuePairToBuffer(ValuePair* p) {
+    *p = ValuePair();
+    return 119;
+  }
+
+  ValuePair* getValuePairPointer() {
+    static ValuePair p;
+    return &p;
+  }
 }
