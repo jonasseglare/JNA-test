@@ -1,7 +1,10 @@
 (ns jna-test.core
   (:import [com.sun.jna Native Pointer NativeLibrary])
-  (:require [net.n01se.clojure-jna :as jna]
-            ))
+  (:require [net.n01se.clojure-jna :as jna]))
+
+
+;;; See explanation here: http://users.jna.dev.java.narkive.com/UpULGQhm/unload-and-reload-a-native-library
+(Native/setProtected true)
 
 ;;; This does not seem to be needed.
 (defn load-library []
@@ -59,6 +62,8 @@
 
 
 ;; Reloading every time
+;;
+;; However, it should not have been loaded before that!!!
 (defn call-fresh [library-name function-name ret-type args]
   (let [library (NativeLibrary/getInstance library-name nil)
         f (.getFunction library function-name)
@@ -68,6 +73,9 @@
 
 (defn get-fresh-stack []
   (call-fresh "soda" "soda_stack_pool_acquire" Pointer []))
+
+(defn call-fresh-fib []
+  (call-fresh "test" "nthFib" Double [9]))
 
 
 (defn get-soda-stack []
