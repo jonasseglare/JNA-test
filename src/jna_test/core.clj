@@ -7,6 +7,9 @@
 (defn load-library []
   (System/loadLibrary "test"))
 
+(defn set-jna-library-path []
+  (System/setProperty "jna.library.path" "/usr/local/lib:resources/"))
+
 (defn invoke-it [n] 
   (jna/invoke Double test/nthFib n))
 
