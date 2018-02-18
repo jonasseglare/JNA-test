@@ -16,7 +16,12 @@ Regarding [Soda support](https://github.com/jonasseglare/soda-cpp) the compiled 
   (System/setProperty "jna.library.path" "/usr/local/lib:resources/"))
 ```
 
-  * How to reload a JNA library? 
+  * How to reload a JNA library?  Possible answers:
+
+http://users.jna.dev.java.narkive.com/UpULGQhm/unload-and-reload-a-native-library
+
+https://github.com/java-native-access/jna/blob/master/src/com/sun/jna/NativeLibrary.java
+
 ## License
 
 Copyright © 2018 Jonas Östlund

@@ -1,5 +1,5 @@
 (ns jna-test.core
-  (:import [com.sun.jna Native Pointer])
+  (:import [com.sun.jna Native Pointer NativeLibrary])
   (:require [net.n01se.clojure-jna :as jna]
             ))
 
@@ -51,6 +51,23 @@
 
 (println "Property"
          (System/getProperty "jna.library.path"))
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;; More stuff
+
+
+;; Reloading every time
+(defn call-fresh [library-name function-name ret-type args]
+  (let [library (NativeLibrary/getInstance library-name nil)
+        f (.getFunction library function-name)
+        result (.invoke f ret-type  (to-array (vec args)))]
+    (.dispose library)
+    result))
+
+(defn get-fresh-stack []
+  (call-fresh "soda" "soda_stack_pool_acquire" Pointer []))
 
 
 (defn get-soda-stack []
