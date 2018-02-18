@@ -10,14 +10,13 @@ Regarding [Soda support](https://github.com/jonasseglare/soda-cpp) the compiled 
 
 ## To figure out
 
-  * How to specify the path of ```.so``` files? So far, it seems like JNA will only find them if I put them under ```native/```
-
-  * ~~How to reload a JNA library?~~ Solved: We have to do it at startup, that is 
+  * ~~How to specify the path of .so files? So far, it seems like JNA will only find them if I put them under native/.~~ *Solved: We have to do it at startup, that is*
 ```
 (defn set-jna-library-path []
   (System/setProperty "jna.library.path" "/usr/local/lib:resources/"))
 ```
 
+  * How to reload a JNA library? 
 ## License
 
 Copyright © 2018 Jonas Östlund
