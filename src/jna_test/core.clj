@@ -48,3 +48,26 @@
 
 (println "Property"
          (System/getProperty "jna.library.path"))
+
+
+(defn get-soda-stack []
+  (jna/invoke Pointer soda/soda_stack_pool_acquire))
+
+(defn with-soda-stack [f]
+  (let [s (jna/invoke Pointer soda/soda_stack_pool_acquire)
+        result (f s)]
+    (jna/invoke Integer soda/soda_stack_pool_release s)
+    result))
+
+(defn soda-demo []
+  (println
+   (time
+    (with-soda-stack
+      (fn [stack]
+        (jna/invoke Integer soda/soda_stack_push_Begin stack)
+        (jna/invoke Integer soda/soda_stack_push_Float32 stack 119.0)
+        (jna/invoke Integer soda/soda_stack_push_Keyword stack "kattskit")
+        (jna/invoke Integer soda/soda_stack_make_vector stack)
+        (jna/invoke String soda/soda_value_pprint_string
+                    (jna/invoke Pointer soda/soda_stack_top stack) stack)
+        )))))

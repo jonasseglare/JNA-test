@@ -6,6 +6,8 @@ Example of how to use the Clojure JNA library, with a custom library.
 
 Just open the jna-test.core file and look at the code there.
 
+Regarding [Soda support](https://github.com/jonasseglare/soda-cpp) the compiled ```libsoda.so``` file must be in under the ```resources/``` directory.
+
 ## License
 
 Copyright © 2018 Jonas Östlund
